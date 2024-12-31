@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="">
+  <title> Form Creation in daisy-UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+  <!-- font awasome cdn link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+    integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+</head>
+
+<body class="bg-base-100 text-base-content pt-16 ">
+  <header class="navbar fixed top-0 left-0 right-0 border-2 rounded bg-base-300 p-2 shadow-md">
+    <div class="flex items-center justify-between w-full">
+
+      <div class="flex items-center gap-2">
+        <img src="image8-2.webp" alt="Logo" class="h-15 w-20 object-contain " />
+      </div>
+
+      <h1 class="text-xl font-semibold text-center">Proof</h1>
+
+      <button class="btn btn-sm btn-error text-white hidden md:flex">
+        Logout
+      </button>
+
+      <button class="btn btn-sm btn-error text-white md:hidden">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class=" w-full min-h-screen flex flex-col gap-4 md:flex-row p-2 ">
+    <!-- Mobile view container adhr  -->
+    <div class="container grid grid-cols-2 gap-4 sm:hidden">
+      <!-- Aadhaar Proof -->
+      <div class="btn bg-yellow-300 text-black px-1 py-2 hover:bg-yellow-400 flex items-center gap-2">
+        <span class="text-center text-sm sm:text-base">Aadhaar Proof</span>
+        <div class="flex items-center gap-2">
+          <i id="aadhaarUploadIcon" class="fa-solid fa-upload text-xl cursor-pointer"
+            onclick="triggerFileInput('aadhaar')"></i>
+          <input type="file" id="aadhaarUpload" class="hidden" accept="image/*"
+            onchange="handleFileUpload('aadhaar')" />
+          <!-- Green Tick first -->
+          <i id="aadhaarCheck" class="fa-regular fa-circle-check hidden text-green-500 text-lg"></i>
+          <!-- Eye Icon first -->
+          <i id="aadhaarEyeIcon" class="fa-regular fa-eye hidden text-blue-500 text-lg cursor-pointer"
+            onclick="openModal('aadhaar')"></i>
+        </div>
+      </div>
+
+      <!-- PAN Proof -->
+      <div class="btn bg-yellow-300 text-black px-1 py-2 hover:bg-yellow-400 flex items-center gap-2">
+        <span class="text-center text-sm sm:text-base">PAN Proof</span>
+        <div class="flex items-center gap-2">
+          <i id="panUploadIcon" class="fa-solid fa-upload text-xl cursor-pointer" onclick="triggerFileInput('pan')"></i>
+          <input type="file" id="panUpload" class="hidden" accept="image/*" onchange="handleFileUpload('pan')" />
+          <!-- Green Tick first -->
+          <i id="panCheck" class="fa-regular fa-circle-check hidden text-green-500 text-lg"></i>
+          <!-- Eye Icon first -->
+          <i id="panEyeIcon" class="fa-regular fa-eye hidden text-blue-500 text-lg cursor-pointer"
+            onclick="openModal('pan')"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">Selected Image</h3>
+        <img id="modalImage" class="w-full h-auto mb-4" alt="Selected Proof Image" />
+        <div class="flex justify-between">
+          <button id="removeImageBtn" class="btn bg-red-500 text-white hover:bg-red-600" onclick="removeImage()">Remove
+            Image</button>
+          <label for="my_modal_6" class="btn">Close</label>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- desktop view -->
+    <div
+      class="hidden sm:block sm:flex-1 sm:p-6 sm:rounded-lg sm:text-white sm:border-2 sm:rounded sm:border-accent-content ">
+      <div class="hidden md:flex p-4 rounded-lg sm:bg-cyan-800">
+        <div class="flex flex-col md:flex-row md:justify-around items-center gap-4 ">
+          <button class="btn bg-white text-black w-full md:w-[300px] ">AADHAAR
+            PROOF</button>
+          <button class="btn bg-white text-black w-full md:w-[300px] ">PAN PROOF</button>
+        </div>
+      </div>
+
+      <!-- Container 2  browser view buttom side container-->
+      <div class="hidden md:flex justify-center p-6 rounded-lg  border-accent-content h-[700px] ">
+
+        <div class="bg-cover bg-center w-full h-[680px]" style="background-image: url('aadhaar.jpg');">
+
+          <!--bg-image-->
+
+          <div class="flex items-center bg-cover justify-center h-[680px] bg-black bg-opacity-10 w-[100%] ">
+            <h1 class="text-white text-4xl"></h1>
+          </div>
+        </div>
+
+        <!-- <div
+          class="flex items-center justify-center h-[60px] bg-base-100 rounded-lg shadow-md p-6  p-[50px]">
+          <label class="relative inline-block w-full cursor-pointer ">
+            <input type="file" class="file-input file-input-bordered file-input-primary opacity-0 absolute inset-0 " />
+            <span
+              class="flex items-center justify-center text-center text-lg font-semibold text-base-content w-full h-full">
+              File Show / Browser File Upload
+            </span>
+          </label>
+        </div> -->
+      </div>
+
+    </div>
+
+    <div class="flex-1 mb-[75px]">
+
+      <form class="space-y-1" id="formValidation">
+        <!-- PAN Number Input -->
+        <div class="form-control" id="panForm">
+          <label class="label pb-0">
+            <span class="label-text">Pan Number *</span>
+          </label>
+          <input type="text" placeholder="PAN Number *" class="input input-bordered focus:ring-2 focus:ring-green-500 focus:border-green-500  " id="pan" name="panInput"
+            maxlength="10" required>
+        </div>
+
+        <!-- Name Input -->
+        <div class="form-control">
+          <label class="label pb-0">
+            <span class="label-text">Name</span>
+          </label>
+          <input type="text" placeholder="Name as per PAN Website" class="input input-bordered validate focus:ring-2 focus:ring-green-500 focus:border-green-500" id="name"
+            required>
+        </div>
+
+        <!-- Date of Birth and Aadhaar Number -->
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-2">
+          <!-- Date of Birth -->
+          <div class="form-control">
+            <label class="label pb-0">
+              <span class="label-text">Date of Birth *</span>
+            </label>
+            <input type="date" class="input input-bordered md:w-full focus:ring-2 focus:ring-green-500 focus:border-green-500" required>
+          </div>
+
+          <!-- Aadhaar Number -->
+          <div class="form-control ml-4">
+            <label class="label pb-0">
+              <span class="label-text">Aadhaar Number *</span>
+            </label>
+            <input type="text" placeholder="(Last 4 Digits Only) *" class="input w-full input-bordered focus:ring-2 focus:ring-green-500 focus:border-green-500" id="aadhaar"
+              maxlength="4" required>
+          </div>
+        </div>
+
+        <!-- Father Name -->
+        <div class="form-control">
+          <label class="label pb-0">
+            <span class="label-text">Father Name *</span>
+          </label>
+          <input type="text" placeholder="Father's Name *" class="input input-bordered validate focus:ring-2 focus:ring-green-500 focus:border-green-500" id="fatherName"
+            required>
+        </div>
+
+        <!-- Mother Name -->
+        <div class="form-control">
+          <label class="label pb-0">
+            <span class="label-text">Mother Name</span>
+          </label>
+          <input type="text" placeholder="Mother Name" class="input input-bordered validate focus:ring-2 focus:ring-green-500 focus:border-green-500" id="motherName">
+        </div>
+
+        <!-- Gender Selection -->
+        <div class="form-control">
+          <label class="cursor-pointer label pb-0">
+            <span class="label-text">Gender *</span>
+          </label>
+          <div class="flex space-x-4">
+            <button type="button" id="male"
+              class="btn border-neutral-content btn-sm text-center text-base-300 gender-btn">Male</button>
+            <button type="button" id="female"
+              class="btn border-neutral-content btn-sm text-center text-base-300 gender-btn">Female</button>
+            <button type="button" id="trans"
+              class="btn border-neutral-content btn-sm text-center text-base-300 gender-btn">Transgender</button>
+          </div>
+        </div>
+
+        <!-- Marital Status -->
+        <div class="form-control">
+          <label class="cursor-pointer label pb-0">
+            <span class="label-text">Marital Status *</span>
+          </label>
+          <div class="flex space-x-4">
+            <button type="button" id="single" class="btn border-neutral-content btn-sm text-center text-base-300  marital-btn">Single</button>
+            <button type="button" id="married" class="btn border-neutral-content btn-sm text-center text-base-300  marital-btn">Married</button>
+          </div>
+        </div>
+
+        <!-- <button type="submit" class="btn btn-primary mt-4 w-full">Submit</button> -->
+      </form>
+
+    </div>
+  </div>
+
+
+  <footer>
+    <div
+      class=" hidden md:flex flex-col md:flex-row flex-nowrap justify-between items-center gap-4 p-4 bg-base-300 border-t border-base-300 fixed bottom-0 left-0 right-0 z-10">
+      <button class="btn bg-cyan-800 text-white w-full md:w-auto px-6 py-2 text-center ">Previous</button>
+      <button class="btn bg-cyan-800 text-white w-full md:w-auto px-6 py-2 text-center ">Next</button>
+    </div>
+  </footer>
+
+
+  <div class="fixed bottom-0 left-0 right-0 bg-base-300 border-t border-base-300 z-10 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <button class="btn bg-accent-content text-white px-6 py-2 hover:bg-cyan-700  w-1/2 sm:w-auto">Previous</button>
+      <button class="btn bg-primary text-white px-6 py-2 hover:bg-cyan-700  w-1/2 sm:w-auto">Next</button>
+    </div>
+  </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
